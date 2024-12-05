@@ -1,0 +1,66 @@
+{% extends 'topbar.html' %}
+{% block body %}
+
+<!-- Font Awesome for Icons -->
+<script src="https://kit.fontawesome.com/5c3b24e338.js" crossorigin="anonymous"></script>
+
+<!-- Load Static CSS -->
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/expenselist.css' %}">
+
+<!-- Razorpay Script -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<!-- Search Form -->
+<form method="post" action="{% url 'expense_search' %}" class="mb-4">
+    {% csrf_token %}
+    <div class="input-group">
+        <textarea name="srch" id="search11" class="form-control" placeholder="Search here" rows="1"></textarea>
+        <div class="input-group-append">
+            <button id="icon" class="btn btn-outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+    </div>
+</form>
+
+<!-- Expense Table -->
+<table class="table table-bordered table-hover mt-3">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Expense</th>
+            <th>Expense Type</th>
+            <th>Expense Date</th>
+            <th>Description</th>
+            <th>User ID</th>
+            <th colspan="3">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in s %}
+        <tr>
+            <td>{{ i.id }}</td>
+            <td>{{ i.expense }}</td>
+            <td>{{ i.expense_type }}</td>
+            <td>{{ i.expense_date }}</td>
+            <td><textarea class="form-control" readonly cols="15" rows="2">{{ i.description }}</textarea></td>
+            <td>{{ i.user }}</td>
+            <td><a href="deleteE/{{ i.id }}" class="btn btn-danger btn-sm">Delete</a></td>
+            <td><a href="editE/{{ i.id }}" class="btn btn-warning btn-sm">Edit</a></td>
+            <td><a href="pay" class="btn btn-success btn-sm">Pay</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Categories Sidebar -->
+<div class="rside mt-5">
+    <p class="categ font-weight-bold">CATEGORIES:</p>
+    <ul class="list-group">
+        <li class="list-group-item"><a href="{% url 'list' %}">All</a></li>
+        {% for i in expt %}
+        <li class="list-group-item"><a href="{% url 'ext' i %}">{{ i }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

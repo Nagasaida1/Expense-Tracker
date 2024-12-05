@@ -1,0 +1,30 @@
+{% extends 'topbar.html' %}
+{% block body %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="border rounded p-4 shadow-lg col-md-6 bg-light"> <!-- Responsive card-style form container -->
+        <h2 class="text-center mb-4">LOGIN PAGE</h2>
+
+        <!-- Display error message if exists -->
+        {% if error %}
+            <div class="alert alert-danger text-center" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ d.as_p }} <!-- Render all form fields dynamically -->
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary w-45" id="login">Login</button>
+                <button type="reset" class="btn btn-secondary w-45" id="reset">Reset</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

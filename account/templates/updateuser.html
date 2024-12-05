@@ -1,0 +1,46 @@
+{% extends 'topbar.html' %} <!-- Fixed typo from 'topebar.html' -->
+{% block body %}
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="border rounded p-4 shadow-lg col-md-8 bg-light"> <!-- Card-style form container -->
+        <h2 class="text-center mb-4">Edit User Details</h2>
+
+        <form action="" method="post">
+            {% csrf_token %}
+
+            <!-- Change Username Link -->
+            <div class="text-center mb-4">
+                <a href="cngu" class="btn btn-outline-primary">Change Username</a>
+            </div>
+
+            <!-- Editable User Details -->
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tbody>
+                        <!-- Edit User Form -->
+                        <tr>
+                            <td colspan="2">
+                                {{ edit2.as_table }}
+                            </td>
+                        </tr>
+                        <!-- Additional User Form Fields -->
+                        <tr>
+                            <td colspan="2">
+                                {{ edit3.as_table }}
+                            </td>
+                        </tr>
+                        <!-- Form Buttons -->
+                        <tr>
+                            <td colspan="2" class="text-center">
+                                <button type="submit" class="btn btn-success me-2">Update</button>
+                                <button type="reset" class="btn btn-secondary">Reset</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

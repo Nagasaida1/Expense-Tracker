@@ -1,0 +1,32 @@
+{% extends 'topbar.html' %}
+{% block body %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+<div class="container py-4">
+    <h2 class="text-center mb-4">Daily Income-Expense Management System</h2>
+
+    {% if user.is_authenticated %}
+        <div class="table-responsive">
+            <table class="table table-bordered text-center" style="background-color: rgb(255, 247, 172);">
+                <tr>
+                    <td>
+                        <h3 class="text-success">Total Income - Rs {{ incb }}</h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h3 class="text-danger">Total Expense - Rs {{ expb }}</h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h3 class="text-primary">Balance - Rs {{ bal }}</h3>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

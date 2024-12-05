@@ -1,0 +1,75 @@
+{% extends 'topbar.html' %}
+{% block body %}
+
+<!-- Font Awesome for Icons -->
+<script src="https://kit.fontawesome.com/5c3b24e338.js" crossorigin="anonymous"></script>
+
+<!-- Custom CSS -->
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/incomelist.css' %}">
+
+<!-- Income Search Form -->
+<div class="container mt-4">
+  <form method="post" action="{% url 'income_search' %}" class="d-flex align-items-center mb-4">
+    {% csrf_token %}
+    <span class="income me-3"><b>Income List:</b></span>
+    <textarea class="form-control me-2" name="srchs" id="search11" rows="1" placeholder="Search here"></textarea>
+    <button type="submit" class="btn btn-primary" id="icon">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </form>
+</div>
+
+<!-- Income Table -->
+{% if s %}
+<div class="container">
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Income</th>
+        <th>Income Type</th>
+        <th>Income Date</th>
+        <th>Description</th>
+        <th>User ID</th>
+        <th colspan="2">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in s %}
+      <tr>
+        <td>{{ i.id }}</td>
+        <td>{{ i.income }}</td>
+        <td>{{ i.income_type }}</td>
+        <td>{{ i.income_date }}</td>
+        <td>{{ i.description }}</td>
+        <td>{{ i.user }}</td>
+        <td class="text-center">
+          <a href="delete1/{{ i.id }}" class="btn btn-danger btn-sm">Delete</a>
+        </td>
+        <td class="text-center">
+          <a href="edit/{{ i.user.id }}" class="btn btn-warning btn-sm">Edit</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="container text-center mt-5">
+  <h3>No Record Found...</h3>
+</div>
+{% endif %}
+
+<!-- Category Sidebar -->
+<div class="container mt-5">
+  <div class="iside border p-3">
+    <p class="categ"><b>CATEGORIES:</b></p>
+    <h4><a href="{% url 'ilist' %}">All</a></h4>
+    {% for i in ixpt %}
+    <h4><a href="{% url 'ixt' i %}">{{ i }}</a></h4>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

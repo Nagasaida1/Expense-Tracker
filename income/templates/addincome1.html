@@ -1,0 +1,72 @@
+{% extends 'topbar.html' %}
+{% block body %}
+
+<!-- Title -->
+<h2 class="addin text-center mt-4">ADD INCOME</h2>
+
+<!-- Inline Styles -->
+<style>
+  tr:hover {
+    background-color: khaki;
+  }
+  .addin {
+    background-color: greenyellow;
+    width: 180px;
+    border: solid 5px black;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+</style>
+
+<!-- Income Form -->
+<div class="container mt-5">
+  <form method="post" class="shadow p-4 bg-light rounded">
+    {% csrf_token %}
+
+    <!-- Income Input Table -->
+    <table class="table table-bordered">
+      <tr>
+        <th><label for="id_income">Income:</label></th>
+        <td>
+          <input type="number" class="form-control" name="income" required id="id_income" />
+        </td>
+      </tr>
+      <tr>
+        <th><label for="id_income_type">Income type:</label></th>
+        <td>
+          <input type="text" class="form-control" name="income_type" maxlength="30" required id="id_income_type" />
+        </td>
+      </tr>
+      <tr>
+        <th><label for="id_income_date">Income date:</label></th>
+        <td>
+          <input type="text" class="form-control" name="income_date" required id="id_income_date" />
+        </td>
+      </tr>
+      <tr>
+        <th><label for="id_description">Description:</label></th>
+        <td>
+          <textarea class="form-control" name="description" cols="40" rows="4" maxlength="300" required id="id_description"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <th><label for="id_user">User:</label></th>
+        <td>
+          <input type="text" class="form-control" name="uid" value="{{ user }}" readonly />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button type="submit" class="btn btn-primary w-100">Submit</button>
+        </td>
+        <td>
+          <button type="reset" class="btn btn-secondary w-100">Reset</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+{% endblock %}

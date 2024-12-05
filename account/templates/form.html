@@ -1,0 +1,122 @@
+{% extends 'topbar.html' %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: url('https://media.istockphoto.com/id/1257778511/photo/new-indian-money-over-white-isolated-background-indian-currency-rupee-indian-rupee-indian.jpg?s=612x612&w=0&k=20&c=N5itJABGh1RAsB-WRplag-0X6zjTFjjzxNe86Wrsods=') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .registration-form {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px; /* Reduced padding */
+            border-radius: 8px; /* Slightly smaller radius */
+            width: 100%;
+            max-width: 400px; /* Reduced max width */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .registration-form h1 {
+            text-align: center;
+            margin-bottom: 15px; /* Reduced margin */
+            font-size: 20px; /* Reduced font size */
+            letter-spacing: 1px;
+        }
+
+        .registration-form p {
+            margin-bottom: 5px; /* Reduced margin */
+            font-size: 14px; /* Reduced font size */
+            font-weight: bold;
+        }
+
+        .registration-form input,
+        .registration-form button {
+            width: 100%;
+            padding: 8px; /* Reduced padding */
+            margin-bottom: 10px; /* Reduced margin */
+            border: none;
+            border-radius: 4px; /* Reduced radius */
+            font-size: 14px; /* Reduced font size */
+        }
+
+        .registration-form input {
+            background: #fff;
+            color: #000;
+        }
+
+        .registration-form input:focus {
+            outline: none;
+            box-shadow: 0 0 4px #1e90ff;
+        }
+
+        .registration-form button {
+            background: linear-gradient(to right, #1e90ff, #00bfff);
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .registration-form button:hover {
+            background: linear-gradient(to right, #00bfff, #1e90ff);
+            transform: scale(1.03);
+        }
+
+        .registration-form .btn-secondary {
+            background: #ccc;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="registration-form">
+        <h1>Registration Form</h1>
+        <form method="post" novalidate>
+            {% csrf_token %}
+
+            <!-- User Form Fields -->
+            <div class="mb-3">
+                <p>Username:</p>
+                {{ user_form.username }}
+                <p>Email:</p>
+                {{ user_form.email }}
+                <p>Password:</p>
+                {{ user_form.password }}
+            </div>
+
+            <!-- Profile Form Fields -->
+            <div class="mb-3">
+                <p>Phone Number:</p>
+                {{ profile_form.phone_number }}
+                <p>Profile Picture:</p>
+                {{ profile_form.profile_picture }}
+            </div>
+
+            <!-- Buttons Section -->
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary me-2">Save</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}
